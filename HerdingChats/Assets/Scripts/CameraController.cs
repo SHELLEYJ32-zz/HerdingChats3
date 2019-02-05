@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(background.transform.position.x, background.transform.position.y, 0);
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
         if (Approximately(transform.position.x, player.transform.position.x, 0.1f))
