@@ -77,20 +77,20 @@ public class Cat : MonoBehaviour
         {
             evadeFlag = false;
             localCatEvadeCooldown = Global.Instance.catEvadeCooldown;
-            Debug.Log("Stop Evading");
+            //Debug.Log("Stop Evading");
         }
 
         if (catDriftTimer >= catDriftChance && evadeFlag == false)
         {
             DriftDirection();
-            Debug.Log("Drift direction changed");
+            //Debug.Log("Drift direction changed");
         }
         
     }
 
     public void Move(string direction)
     {
-        Debug.Log("Cat " + gameObject + " moved " + direction + "!");
+        //Debug.Log("Cat " + gameObject + " moved " + direction + "!");
 
         if(direction == "Up" || direction == "up")
         {
@@ -120,7 +120,7 @@ public class Cat : MonoBehaviour
 
     void DriftDirection()
     {
-        Debug.Log("Cat " + gameObject + " changed drift direction!");
+        //Debug.Log("Cat " + gameObject + " changed drift direction!");
         //Will cause cats to slowly move around
         catDriftDirectionChance = Random.Range(1, 100);
         if (catDriftDirectionChance <= 25)
@@ -185,7 +185,7 @@ public class Cat : MonoBehaviour
 
     void Evade(Collider2D collider)
     {
-        Debug.Log(gameObject + "Evading");
+        //Debug.Log(gameObject + "Evading");
         drift = gameObject.transform.position - collider.gameObject.transform.position;
         drift = Vector3.ClampMagnitude(drift, 1.0f);
         catRB.velocity = drift * Global.Instance.catEvadeSpeed;
@@ -224,7 +224,7 @@ public class Cat : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Trigger fired on " + collider.gameObject);
+        //Debug.Log("Trigger fired on " + collider.gameObject);
         if (collider.gameObject.tag == "Player")
         {
             evadeFlag = true;

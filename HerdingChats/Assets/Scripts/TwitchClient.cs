@@ -27,10 +27,22 @@ public class TwitchClient : MonoBehaviour
         client.OnChatCommandReceived += CommandListen;
 
         client.Connect();
-        client.SendMessage(client.JoinedChannels[0], "MrTwitchBoto has joined chat");
 
         catController = CatControllerObject.GetComponent<CatController>();
         helpTimer = 40.0f;
+    }
+
+    void Update()
+    {
+        if (helpFlag == true)
+        {
+            helpTimer = helpTimer - Time.deltaTime;
+            if (helpTimer <= 0.0f)
+            {
+                helpFlag = false;
+                helpTimer = 40.0f;
+            }
+        }
     }
 
     private void CommandListen(object sender, TwitchLib.Client.Events.OnChatCommandReceivedArgs e)
@@ -49,16 +61,6 @@ public class TwitchClient : MonoBehaviour
         {
             client.SendMessage(client.JoinedChannels[0],"Command not recognized, please use !Help to get the list of commands.");
         }*/
-
-        if (helpFlag == true)
-        {
-            helpTimer = helpTimer - Time.deltaTime;
-            if (helpTimer <= 0.0f)
-            {
-                helpFlag = false;
-                helpTimer = 40.0f;
-            }
-        }
     }
 
     private void ChatListen(object sender, TwitchLib.Client.Events.OnMessageReceivedArgs e)
