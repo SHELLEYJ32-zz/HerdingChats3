@@ -13,6 +13,7 @@ public class CatController : MonoBehaviour
         camera = Camera.main.GetComponent<Camera>();
     }
 
+
     public void ChatMoveCommand(string direction)
     {
         GameObject[] cats;
@@ -21,32 +22,17 @@ public class CatController : MonoBehaviour
         r = Random.Range(0, cats.Length);
         selectedCat = cats[r];
         selectedCat.GetComponent<Cat>().Move(direction);
-        //GameObject[] catsOnCamera = new GameObject[cats.Length];
-        /*
-                for (int i = 0; i <= cats.Length; i++)
-                {
-                    if (cats[i].transform.position.x > camera.ViewportToWorldPoint(new Vector3(0,0,0)).x && cats[i].transform.position.x < camera.ViewportToWorldPoint(new Vector3(1,1,0)).x)
-                    {
-                        if (cats[i].transform.position.y > camera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y && cats[i].transform.position.y < camera.ViewportToWorldPoint(new Vector3(1, 1, 0)).y)
-                        {
-                            catsOnCamera[i] = cats[i];
-                        }
-                    }
-                }
 
-                for (int i = 0; i <= catsOnCamera.Length; i++)
-                {
-                    r = Random.Range(0, cats.Length);
-                    if (catsOnCamera[r] == null)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        selectedCat = catsOnCamera[r];
-                        selectedCat.GetComponent<Cat>().Move(direction);
-                        break;
-                    }
-                }*/
+       List<GameObject> catsOnCamera = new List<GameObject>();
+
+        for (int i = 0; i <= cats.Length; i++)
+        {
+            if (cats[i].transform.position.x > camera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x && cats[i].transform.position.x < camera.ViewportToWorldPoint(new Vector3(1, 1, 0)).x)
+                if (cats[i].transform.position.y > camera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y && cats[i].transform.position.y < camera.ViewportToWorldPoint(new Vector3(1, 1, 0)).y)
+                    catsOnCamera.Add(cats[i]);
+        }
+
+        print(catsOnCamera.Count);
+
     }
 }
