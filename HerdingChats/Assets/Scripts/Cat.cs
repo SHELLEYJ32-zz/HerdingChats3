@@ -49,7 +49,7 @@ public class Cat : MonoBehaviour
         {
             if (catMoveTimer >= catMoveChance)
             {
-                MoveDirection();
+                AutoMove();
             }
         }
 
@@ -155,7 +155,7 @@ public class Cat : MonoBehaviour
         catDriftTimer = 0.0f;
     }
 
-    void MoveDirection()
+    void AutoMove()
     {
         if (catMoveTimer >= catMoveChance)
         {
@@ -199,7 +199,7 @@ public class Cat : MonoBehaviour
 
     }
 
-    void CatCought(Collision2D collision)
+    void CatCaught(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") == true)
         {
@@ -213,7 +213,7 @@ public class Cat : MonoBehaviour
     {
         if(collision.gameObject.layer == 10)
         {
-            CatCought(collision);
+            CatCaught(collision);
         }
         else
         {
@@ -230,5 +230,9 @@ public class Cat : MonoBehaviour
             evadeFlag = true;
             Evade(collider);
         }
+    }
+
+    void Meow()
+    {
     }
 }
