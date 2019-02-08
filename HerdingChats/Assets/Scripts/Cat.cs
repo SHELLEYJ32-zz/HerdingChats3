@@ -24,6 +24,7 @@ public class Cat : MonoBehaviour
     private float localCatEvadeCooldown;
     private float previousCatCaughtTime;
     private float latterCatCaughtTime;
+    private float CatCaughtTimeInterval;
 
 
 
@@ -45,7 +46,7 @@ public class Cat : MonoBehaviour
     {
         catMoveTimer = catMoveTimer + Time.deltaTime;
         catDriftTimer = catDriftTimer + Time.deltaTime;
-        
+
 
         if (Global.Instance.streamerMode == false)
         {
@@ -87,14 +88,14 @@ public class Cat : MonoBehaviour
             DriftDirection();
             //Debug.Log("Drift direction changed");
         }
-        
+
     }
 
     public void Move(string direction)
     {
         //Debug.Log("Cat " + gameObject + " moved " + direction + "!");
 
-        if(direction == "Up" || direction == "up")
+        if (direction == "Up" || direction == "up")
         {
             moveHorizontal = 0.0f;
             moveVertical = Global.Instance.catMoveForce;
@@ -206,16 +207,26 @@ public class Cat : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") == true)
         {
             Global.Instance.catsCaught = Global.Instance.catsCaught + 1;
-            if (System.Math.Abs(previousCatCaughtTime-0.0f) <= 0.0f)
-                previousCatCaughtTime 
-            Debug.Log(Global.Instance.catsCaught);
+            if (System.Math.Abs(previousCatCaughtTime - 0.0f) <= 0.0f)
+                previousCatCaughtTime = Time.time;
+            else
+            {
+                latterCatCaughtTime = Time.time;
+                CatCaughtTimeInterval = latterCatCaughtTime - previousCatCaughtTime;
+                previousCatCaughtTime = latterCatCaughtTime;
+            }
+            if (System.Math.Abs(CatCaughtTimeInterval - Global.Instance.catComboTimer) <= 0.0f)
+                Global.Instance.score += Global.Instance.catPointWorth * 2;
+            else
+                Global.Instance.score += Global.Instance.catPointWorth;
+            //Debug.Log(Global.Instance.catsCaught);
             Destroy(gameObject);
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == 10)
+        if (collision.gameObject.layer == 10)
         {
             CatCaught(collision);
         }
@@ -223,7 +234,7 @@ public class Cat : MonoBehaviour
         {
             MoveAway(collision);
         }
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D collider)

@@ -40,7 +40,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5398061791547894979}
   m_Enabled: 1
-  m_CellSize: {x: 5.59, y: 5.49, z: 0}
+  m_CellSize: {x: 2.56, y: 2.56, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -490,7 +490,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: 0.84977114, g: 0.568931, b: 0.58614427, a: 1}
   - m_RefCount: 1
-    m_Data: {r: 0.9174295, g: 0.593004, b: 0.63429433, a: 1}
+    m_Data: {r: 0.7376057, g: 0.32941806, b: 0.46141836, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -13, y: -22, z: 0}
