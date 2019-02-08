@@ -22,6 +22,8 @@ public class Cat : MonoBehaviour
     private bool evadeFlag;
     private bool postMoveFlag;
     private float localCatEvadeCooldown;
+    private float previousCatCaughtTime;
+    private float latterCatCaughtTime;
 
 
 
@@ -204,6 +206,8 @@ public class Cat : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") == true)
         {
             Global.Instance.catsCaught = Global.Instance.catsCaught + 1;
+            if (System.Math.Abs(previousCatCaughtTime-0.0f) <= 0.0f)
+                previousCatCaughtTime 
             Debug.Log(Global.Instance.catsCaught);
             Destroy(gameObject);
         }

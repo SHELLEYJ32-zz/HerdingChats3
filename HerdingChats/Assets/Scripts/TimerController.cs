@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class TimerController : MonoBehaviour
 {
-    public Text Timertext;
+    public Text TimerText;
 
     void Start()
     {
-        Timertext.text = "Time Left: " + Mathf.RoundToInt(Global.Instance.timer) + " seconds";
+        TimerText.text = "Time Left: " + Mathf.RoundToInt(Global.Instance.timer) + " seconds";
     }
 
 
@@ -18,11 +18,11 @@ public class TimerController : MonoBehaviour
         if (!Global.Instance.endGame && Mathf.RoundToInt(Global.Instance.timer - Time.deltaTime) >= 0)
         {
             Global.Instance.timer -= Time.deltaTime;
-            Timertext.text = "Time Left: " + Mathf.RoundToInt(Global.Instance.timer) + " seconds";
+            TimerText.text = "Time Left: " + Mathf.RoundToInt(Global.Instance.timer) + " seconds";
         }
         else
         {
-            Timertext.text = "Time Left: 0 seconds";
+            TimerText.text = "Time Left: 0 seconds";
             Global.Instance.endGame = true;
         }
     }

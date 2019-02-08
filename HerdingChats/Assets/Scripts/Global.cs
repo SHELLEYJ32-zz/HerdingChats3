@@ -18,6 +18,12 @@ public class Global : MonoBehaviour
     public float catPostMoveTimer = 5.0f;
     public int catRayNumber = 8;
 
+    //scores
+    public int catPointWorth = 10;
+    public int timePointWorth = 10;
+    public int catComboTimer = 2;
+    public int score = 0;
+
     //Toggles
     public bool streamerMode = true;
 
