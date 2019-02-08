@@ -11,7 +11,8 @@ TrueTypeFontImporter:
   fontName: Amatic SC
   fontNames:
   - Amatic SC
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: dd4a874918ce445049384c683e5d5891, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
