@@ -219,6 +219,7 @@ public class Cat : MonoBehaviour
                 Global.Instance.score += Global.Instance.catPointWorth * 2;
             else
                 Global.Instance.score += Global.Instance.catPointWorth;
+           
             //Debug.Log(Global.Instance.catsCaught);
             Destroy(gameObject);
         }
