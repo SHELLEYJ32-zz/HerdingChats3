@@ -203,8 +203,8 @@ public class Cat : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") == true)
         {
-            Global.Instance.catsCought = Global.Instance.catsCought + 1;
-            Debug.Log(Global.Instance.catsCought);
+            Global.Instance.catsCaught = Global.Instance.catsCaught + 1;
+            Debug.Log(Global.Instance.catsCaught);
             Destroy(gameObject);
         }
     }
