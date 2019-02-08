@@ -15,15 +15,21 @@ public class TimerController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (!Global.Instance.endGame && Mathf.RoundToInt(Global.Instance.timer - Time.deltaTime) >= 0)
+        if (!Global.Instance.endGame)
         {
-            Global.Instance.timer -= Time.deltaTime;
-            TimerText.text = "Time Left: " + Mathf.RoundToInt(Global.Instance.timer) + " seconds";
-        }
-        else
-        {
-            TimerText.text = "Time Left: 0 seconds";
-            Global.Instance.endGame = true;
+            if (Mathf.RoundToInt(Global.Instance.timer - Time.deltaTime) >= 0)
+            {
+                Global.Instance.timer -= Time.deltaTime;
+                TimerText.text = "Time Left: " + Mathf.RoundToInt(Global.Instance.timer) + " seconds";
+            }
+
+            else
+            {
+                TimerText.text = "Time Left: 0 seconds";
+                Global.Instance.timer = 0;
+                Global.Instance.endGame = true;
+            }
         }
     }
+
 }

@@ -15,6 +15,12 @@ public class ScoreScript : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (Global.Instance.endGame)
+        {
+            Global.Instance.score += Mathf.RoundToInt(Global.Instance.timer * Global.Instance.timePointWorth);
+        }
         ScoreText.text = "Score: " + Global.Instance.score;
+
     }
+
 }
