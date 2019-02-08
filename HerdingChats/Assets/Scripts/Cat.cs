@@ -25,6 +25,7 @@ public class Cat : MonoBehaviour
     private float previousCatCaughtTime;
     private float latterCatCaughtTime;
     private float CatCaughtTimeInterval;
+    private int catCount;
 
 
 
@@ -40,6 +41,8 @@ public class Cat : MonoBehaviour
         drift = Vector3.zero;
         away = Vector3.zero;
         DriftDirection();
+        GameObject[] catArray = GameObject.FindGameObjectsWithTag("Cat");
+        catCount = catArray.Length;
     }
 
     void Update()
@@ -222,6 +225,10 @@ public class Cat : MonoBehaviour
            
             //Debug.Log(Global.Instance.catsCaught);
             Destroy(gameObject);
+            if(Global.Instance.catsCaught == catCount)
+            {
+                Global.Instance.endGame = true;
+            }
         }
     }
 
