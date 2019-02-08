@@ -13,8 +13,8 @@ public class ScoreScript : MonoBehaviour
     }
 
 
-    public void UpdateScore()
+    public void FixedUpdate()
     {
-
+        ScoreText.text = "Score: " + Global.Instance.score;
     }
 }
