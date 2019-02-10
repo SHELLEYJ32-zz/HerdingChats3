@@ -22,9 +22,6 @@ public class Cat : MonoBehaviour
     private bool evadeFlag;
     private bool postMoveFlag;
     private float localCatEvadeCooldown;
-    private float previousCatCaughtTime;
-    private float latterCatCaughtTime;
-    private float CatCaughtTimeInterval;
     private int catCount;
 
 
@@ -40,7 +37,7 @@ public class Cat : MonoBehaviour
         catPostMoveTimer = Global.Instance.catPostMoveTimer;
         drift = Vector3.zero;
         away = Vector3.zero;
-        DriftDirection();
+        //DriftDirection();
         GameObject[] catArray = GameObject.FindGameObjectsWithTag("Cat");
         catCount = catArray.Length;
     }
@@ -210,24 +207,27 @@ public class Cat : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") == true)
         {
             Global.Instance.catsCaught = Global.Instance.catsCaught + 1;
-            if (System.Math.Abs(previousCatCaughtTime - 0.0f) <= 0.0f)
-                previousCatCaughtTime = Time.time;
+            if (System.Math.Abs(Global.Instance.previousCatCaughtTime - 0f) < Mathf.Epsilon)
+            {
+                Global.Instance.previousCatCaughtTime = Time.time;
+            }
             else
             {
-                latterCatCaughtTime = Time.time;
-                CatCaughtTimeInterval = latterCatCaughtTime - previousCatCaughtTime;
-                previousCatCaughtTime = latterCatCaughtTime;
+                Global.Instance.latterCatCaughtTime = Time.time;
+                Global.Instance.CatCaughtTimeInterval = Global.Instance.latterCatCaughtTime - Global.Instance.previousCatCaughtTime;
+                Global.Instance.previousCatCaughtTime = Global.Instance.latterCatCaughtTime;
             }
-            if (System.Math.Abs(CatCaughtTimeInterval - Global.Instance.catComboTimer) <= 0.0f)
+            if (Global.Instance.catsCaught != 1 && Global.Instance.CatCaughtTimeInterval <= Global.Instance.catComboTimer)
                 Global.Instance.score += Global.Instance.catPointWorth * 2;
             else
                 Global.Instance.score += Global.Instance.catPointWorth;
-           
+
             //Debug.Log(Global.Instance.catsCaught);
             Destroy(gameObject);
-            if(Global.Instance.catsCaught == catCount)
+            if (Global.Instance.catsCaught == catCount)
             {
                 Global.Instance.endGame = true;
+                Global.Instance.score += Mathf.RoundToInt(Global.Instance.timer * Global.Instance.timePointWorth);
             }
         }
     }
