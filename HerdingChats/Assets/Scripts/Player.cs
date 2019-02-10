@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Global.Instance.CheckEndGame();
         Vector3 movement = Vector3.zero;
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");

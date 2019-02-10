@@ -37,7 +37,7 @@ public class Cat : MonoBehaviour
         catPostMoveTimer = Global.Instance.catPostMoveTimer;
         drift = Vector3.zero;
         away = Vector3.zero;
-        //DriftDirection();
+        DriftDirection();
         GameObject[] catArray = GameObject.FindGameObjectsWithTag("Cat");
         catCount = catArray.Length;
     }
@@ -226,8 +226,8 @@ public class Cat : MonoBehaviour
             Destroy(gameObject);
             if (Global.Instance.catsCaught == catCount)
             {
-                Global.Instance.endGame = true;
                 Global.Instance.score += Mathf.RoundToInt(Global.Instance.timer * Global.Instance.timePointWorth);
+                Global.Instance.endGame = true;
             }
         }
     }

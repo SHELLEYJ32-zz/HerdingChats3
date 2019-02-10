@@ -9,7 +9,7 @@ public class ScoreScript : MonoBehaviour
 
     void Start()
     {
-        ScoreText.text = "Score: 0";
+        ScoreText.text = "Score: " + Global.Instance.score;
     }
 
 

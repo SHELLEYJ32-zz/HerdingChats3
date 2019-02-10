@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Global : MonoBehaviour
 {
@@ -22,17 +23,17 @@ public class Global : MonoBehaviour
     public int catPointWorth = 10;
     public int timePointWorth = 10;
     public int catComboTimer = 2;
-    public int score = 0;
+    public int score;
 
     //Toggles
     public bool streamerMode = true;
 
     //End Game
-    public bool endGame = false;
+    public bool endGame;
 
     //Counters
-    public int catsCaught = 0;
-    public float timer = 180.0f;
+    public int catsCaught;
+    public float timer = 90f;
     public float previousCatCaughtTime;
     public float latterCatCaughtTime;
     public float CatCaughtTimeInterval;
@@ -50,6 +51,12 @@ public class Global : MonoBehaviour
         }
     }
 
-
+    public void CheckEndGame()
+    {
+        if (System.Math.Abs(timer - 0) < Mathf.Epsilon)
+            endGame = true;
+        if (endGame)
+            SceneManager.LoadScene(sceneName: "EndScene");
+    }
 
 }

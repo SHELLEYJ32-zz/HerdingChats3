@@ -14297,13 +14297,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  catMoveForce: 300
-  catMoveTimeMax: 7
-  catMoveTimeMin: 3
-  catEvadeSpeed: 5
+  catMoveForce: 500
+  catMoveTimeMax: 10
+  catMoveTimeMin: 1
+  catEvadeSpeed: 7
   catDriftSpeed: 2
-  catEvadeCooldown: 5
-  catPostMoveTimer: 3
+  catEvadeCooldown: 1
+  catPostMoveTimer: 5
   catRayNumber: 8
   catPointWorth: 10
   timePointWorth: 10
