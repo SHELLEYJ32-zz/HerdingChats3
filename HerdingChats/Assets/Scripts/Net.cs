@@ -17,5 +17,9 @@ public class Net : MonoBehaviour
     void Update()
     {
         netTimer = netTimer - Time.deltaTime;
+        if (netTimer <= 0.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
