@@ -6,14 +6,11 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D playerRB;
     public GameObject net;
-    private bool netFlag;
-    private float netTimer;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        netTimer = Global.Instance.netTimer;
     }
 
     void FixedUpdate()
@@ -28,18 +25,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             netSwipe();
-            netFlag = true;
-        }
-
-        if (netFlag == true)
-        {
-            netTimer = netTimer - Time.deltaTime;
-            if (netTimer <= 0.0f)
-            {
-                netTimer = Global.Instance.netTimer;
-                Destroy(GameObject.FindGameObjectWithTag("Net"));
-                netFlag = false;
-            }
         }
     }
 
