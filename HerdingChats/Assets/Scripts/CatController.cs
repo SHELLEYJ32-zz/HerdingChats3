@@ -34,7 +34,6 @@ public class CatController : MonoBehaviour
             r = Random.Range(0, cats.Length);
             selectedCat = cats[r];
             selectedCat.GetComponent<Cat>().Move(direction);
-            selectedCat.GetComponent<Cat>().TwitchSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
         }
         else
@@ -42,7 +41,6 @@ public class CatController : MonoBehaviour
             r = Random.Range(0, catsOnCamera.Count);
             selectedCat = catsOnCamera[r];
             selectedCat.GetComponent<Cat>().Move(direction);
-            selectedCat.GetComponent<Cat>().TwitchSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
         }
     }

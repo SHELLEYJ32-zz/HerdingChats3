@@ -20,7 +20,15 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
         movement = Vector3.ClampMagnitude(movement, 1.0f);
-        playerRB.velocity = movement * Global.Instance.playerSpeed;
+        if (!Global.Instance.playerInRiver)
+        {
+            playerRB.velocity = movement * Global.Instance.playerSpeed;
+        }
+        else
+        {
+            playerRB.velocity = movement * Global.Instance.playerSlowSpeed;
+        }
+
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -34,8 +42,6 @@ public class Player : MonoBehaviour
         GameObject newNet = Instantiate(net, netPosition, Quaternion.identity);
         newNet.transform.SetParent(gameObject.transform);
     }
-
-
 
 
 }

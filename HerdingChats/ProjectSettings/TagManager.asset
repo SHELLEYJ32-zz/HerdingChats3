@@ -46,9 +46,9 @@ TagManager:
   - name: Background
     uniqueID: 4120298319
     locked: 0
-  - name: Obstacles
-    uniqueID: 4091365343
+  - name: River
+    uniqueID: 1836018203
     locked: 0
-  - name: Foreground
-    uniqueID: 521181815
+  - name: Main
+    uniqueID: 4091365343
     locked: 0

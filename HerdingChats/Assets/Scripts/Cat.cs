@@ -236,12 +236,6 @@ public class Cat : MonoBehaviour
         }
     }
 
-    public void TwitchSprite()
-    {
-        float SpriteChangeTimer = 0.0f;
-        gameObject.GetComponent<SpriteRenderer>().sprite = TwitchChongus;
-    }
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 10)
@@ -256,7 +250,7 @@ public class Cat : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        //Debug.Log("Trigger fired on " + collider.gameObject);
+       //Debug.Log("Trigger fired on " + collider.gameObject);
         if (collider.gameObject.tag == "Player")
         {
             evadeFlag = true;
