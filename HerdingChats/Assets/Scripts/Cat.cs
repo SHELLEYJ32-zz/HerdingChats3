@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
+    public Sprite TwitchChongus;
     private Rigidbody2D catRB;
+    private Sprite originalSprite;
     private float moveHorizontal;
     private float moveVertical;
     private float driftHorizontal;
@@ -29,6 +31,7 @@ public class Cat : MonoBehaviour
     void Start()
     {
         catRB = gameObject.GetComponent<Rigidbody2D>();
+        originalSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
         catMoveTimer = 0.0f;
         catMoveDirectionChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax);
         catMoveChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax);
@@ -73,6 +76,7 @@ public class Cat : MonoBehaviour
             {
                 postMoveFlag = false;
                 catPostMoveTimer = Global.Instance.catPostMoveTimer;
+                gameObject.GetComponent<SpriteRenderer>().sprite = originalSprite;
             }
         }
 
@@ -232,6 +236,12 @@ public class Cat : MonoBehaviour
         }
     }
 
+    public void TwitchSprite()
+    {
+        float SpriteChangeTimer = 0.0f;
+        gameObject.GetComponent<SpriteRenderer>().sprite = TwitchChongus;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 10)
@@ -242,7 +252,6 @@ public class Cat : MonoBehaviour
         {
             MoveAway(collision);
         }
-
     }
 
     void OnTriggerEnter2D(Collider2D collider)

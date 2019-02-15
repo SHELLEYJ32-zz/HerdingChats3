@@ -5,14 +5,14 @@ using UnityEngine;
 public class CatController : MonoBehaviour
 {   //This isn't the script which controlls individual cat movement. Rather, it is the script that chooses a cat to move, and then sends the command to move to a script on the cat object.
 
-    private GameObject selectedCat;
+
+   private GameObject selectedCat;
     private Camera camera;
 
     void Start()
     {
         camera = Camera.main.GetComponent<Camera>();
     }
-
 
     public void ChatMoveCommand(string direction)
     {
@@ -34,6 +34,7 @@ public class CatController : MonoBehaviour
             r = Random.Range(0, cats.Length);
             selectedCat = cats[r];
             selectedCat.GetComponent<Cat>().Move(direction);
+            selectedCat.GetComponent<Cat>().TwitchSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
         }
         else
@@ -41,6 +42,7 @@ public class CatController : MonoBehaviour
             r = Random.Range(0, catsOnCamera.Count);
             selectedCat = catsOnCamera[r];
             selectedCat.GetComponent<Cat>().Move(direction);
+            selectedCat.GetComponent<Cat>().TwitchSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
         }
     }
