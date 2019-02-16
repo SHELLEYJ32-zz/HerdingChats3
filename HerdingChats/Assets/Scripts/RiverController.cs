@@ -6,13 +6,8 @@ public class RiverController : MonoBehaviour
 {
     //private Rigidbody2D riverRB;
 
-    //void Start()
-    //{
-    //    riverRB = gameObject.GetComponent<Rigidbody2D>();
-    //}
 
-
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEntr2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
