@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 3fd588ffda965eb459da6fa8369aca59
+guid: bea0220a0ac9145a89d2e51fd54d91f6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - TwitchChongus: {fileID: 21300000, guid: 19c1c6426ad684d3db3da5c34d80c07f, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

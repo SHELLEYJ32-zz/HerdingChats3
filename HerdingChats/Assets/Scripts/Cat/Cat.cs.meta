@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 3fd588ffda965eb459da6fa8369aca59
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - TwitchChongus: {fileID: 21300000, guid: 19c1c6426ad684d3db3da5c34d80c07f, type: 3}
+  - Meow: {fileID: 2576022501524400193, guid: 40d9e199805224e61a5e21c3f00c5dab, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

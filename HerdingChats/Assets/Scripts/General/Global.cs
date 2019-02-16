@@ -10,7 +10,7 @@ public class Global : MonoBehaviour
 
     //Tweakables
     public float playerSpeed = 5.0f;
-    public float playerSlowSpeed = 1.0f;
+    public float playerSlowSpeed = 3.0f;
     public float catMoveForce = 500.0f;
     public float catMoveTimeMax = 10.0f;
     public float catMoveTimeMin = 1.0f;
@@ -19,7 +19,9 @@ public class Global : MonoBehaviour
     public float catEvadeCooldown = 0.5f;
     public float catPostMoveTimer = 5.0f;
     public float netTimer = 0.5f;
-    public int catRayNumber = 8;
+    public int catRayNumber = 8;     //?
+    public int catTotalNumber = 20;
+    public int catPowerNumber = 2;
 
     //scores
     public int catPointWorth = 10;

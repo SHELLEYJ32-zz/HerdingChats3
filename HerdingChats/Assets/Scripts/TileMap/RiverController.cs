@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class RiverController : MonoBehaviour
 {
-    //private Rigidbody2D riverRB;
 
-
-    void OnTriggerEntr2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {

@@ -6,7 +6,7 @@ public class CatController : MonoBehaviour
 {   //This isn't the script which controlls individual cat movement. Rather, it is the script that chooses a cat to move, and then sends the command to move to a script on the cat object.
 
 
-   private GameObject selectedCat;
+    private GameObject selectedCat;
     private Camera camera;
 
     void Start()
@@ -19,9 +19,9 @@ public class CatController : MonoBehaviour
         GameObject[] cats;
         int r;
         cats = GameObject.FindGameObjectsWithTag("Cat");
-       
 
-       List<GameObject> catsOnCamera = new List<GameObject>();
+
+        List<GameObject> catsOnCamera = new List<GameObject>();
 
         for (int i = 0; i < cats.Length; i++)
         {
@@ -29,11 +29,12 @@ public class CatController : MonoBehaviour
                 if (cats[i].transform.position.y > camera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y && cats[i].transform.position.y < camera.ViewportToWorldPoint(new Vector3(1, 1, 0)).y)
                     catsOnCamera.Add(cats[i]);
         }
-        if(catsOnCamera.Count == 0)
+        if (catsOnCamera.Count == 0)
         {
             r = Random.Range(0, cats.Length);
             selectedCat = cats[r];
             selectedCat.GetComponent<Cat>().Move(direction);
+            selectedCat.GetComponent<Cat>().ChangeSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
         }
         else
@@ -41,6 +42,7 @@ public class CatController : MonoBehaviour
             r = Random.Range(0, catsOnCamera.Count);
             selectedCat = catsOnCamera[r];
             selectedCat.GetComponent<Cat>().Move(direction);
+            selectedCat.GetComponent<Cat>().ChangeSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
         }
     }

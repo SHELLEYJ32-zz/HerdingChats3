@@ -5,6 +5,8 @@ using UnityEngine;
 public class Cat : MonoBehaviour
 {
     public Sprite TwitchChongus;
+    public AudioSource Meow;
+
     private Rigidbody2D catRB;
     private Sprite originalSprite;
     private float moveHorizontal;
@@ -27,7 +29,6 @@ public class Cat : MonoBehaviour
     private int catCount;
 
 
-
     void Start()
     {
         catRB = gameObject.GetComponent<Rigidbody2D>();
@@ -45,7 +46,7 @@ public class Cat : MonoBehaviour
         catCount = catArray.Length;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         catMoveTimer = catMoveTimer + Time.deltaTime;
         catDriftTimer = catDriftTimer + Time.deltaTime;
@@ -63,6 +64,7 @@ public class Cat : MonoBehaviour
         {
             catRB.velocity = Global.Instance.catEvadeSpeed * drift;
             localCatEvadeCooldown = localCatEvadeCooldown - Time.deltaTime;
+
         }
         else if (evadeFlag == false && postMoveFlag == false)
         {
@@ -98,7 +100,6 @@ public class Cat : MonoBehaviour
     public void Move(string direction)
     {
         //Debug.Log("Cat " + gameObject + " moved " + direction + "!");
-
         if (direction == "Up" || direction == "up")
         {
             moveHorizontal = 0.0f;
@@ -193,6 +194,7 @@ public class Cat : MonoBehaviour
     void Evade(Collider2D collider)
     {
         //Debug.Log(gameObject + "Evading");
+        Meow.Play();
         drift = gameObject.transform.position - collider.gameObject.transform.position;
         drift = Vector3.ClampMagnitude(drift, 1.0f);
         catRB.velocity = drift * Global.Instance.catEvadeSpeed;
@@ -210,6 +212,7 @@ public class Cat : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") == true)
         {
+            Meow.Play();
             Global.Instance.catsCaught = Global.Instance.catsCaught + 1;
             if (System.Math.Abs(Global.Instance.previousCatCaughtTime - 0f) < Mathf.Epsilon)
             {
@@ -236,6 +239,11 @@ public class Cat : MonoBehaviour
         }
     }
 
+    public void ChangeSprite()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = TwitchChongus;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 10)
@@ -250,7 +258,7 @@ public class Cat : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-       //Debug.Log("Trigger fired on " + collider.gameObject);
+        //Debug.Log("Trigger fired on " + collider.gameObject);
         if (collider.gameObject.tag == "Player")
         {
             evadeFlag = true;
@@ -258,7 +266,8 @@ public class Cat : MonoBehaviour
         }
     }
 
-    void Meow()
+    void CatSound()
     {
+        Meow.Play();
     }
 }

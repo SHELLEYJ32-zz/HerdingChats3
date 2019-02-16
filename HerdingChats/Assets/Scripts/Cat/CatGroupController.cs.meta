@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e82efa75c99734654a582cd25d73fa81
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - catPrefab: {fileID: 8986041818723585375, guid: f466cbcc78755734799738febf815e22,
+      type: 3}
+  - player: {fileID: 7369405315968530330, guid: 4035c722c214cf641a9081a861b8bc51,
+      type: 3}
+  - Normal1: {fileID: 21300000, guid: 31eefa6613178b04c8e68ddeb847fd38, type: 3}
+  - Normal2: {fileID: 21300000, guid: 1b2804fdd8afb6949b974b92e550bd09, type: 3}
+  - Normal3: {fileID: 21300000, guid: 225118143701838488f83dd9168d1f24, type: 3}
+  - Normal4: {fileID: 21300000, guid: 41be8cff21e94cd43b15a8f507e2ba91, type: 3}
+  - Normal5: {fileID: 21300000, guid: b1ff674f1b76f5a4bb5ce53a6be6734f, type: 3}
+  - IcePower: {fileID: 21300000, guid: 5d78e743c2c7c43ebada76de69c6553c, type: 3}
+  - ScaryPower: {fileID: 21300000, guid: ed745a3dd78f6471aab6636e7c79b5d0, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
