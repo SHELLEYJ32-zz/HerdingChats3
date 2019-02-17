@@ -23,8 +23,7 @@ public class TwitchClient : MonoBehaviour
         client = new Client();
         client.Initialize(credentials, channelName);
 
-        client.OnMessageReceived += ChatListen;
-        client.OnChatCommandReceived += CommandListen;
+        client.OnMessageReceived += CommandListen;
 
         client.Connect();
 
@@ -45,17 +44,17 @@ public class TwitchClient : MonoBehaviour
         }
     }
 
-    private void CommandListen(object sender, TwitchLib.Client.Events.OnChatCommandReceivedArgs e)
+    private void CommandListen(object sender, TwitchLib.Client.Events.OnMessageReceivedArgs e)
     {
-        if (e.Command.CommandText == "help" && helpFlag == false)
+        if (e.ChatMessage.Message == "!help" && helpFlag == false)
         {
             Help();
             helpFlag = true;
         }
-        else if (e.Command.CommandText == "Up" || e.Command.CommandText == "up" || e.Command.CommandText == "Down" || e.Command.CommandText == "down"
-            || e.Command.CommandText == "Left" || e.Command.CommandText == "left" || e.Command.CommandText == "Right" || e.Command.CommandText == "right")
+        else if (e.ChatMessage.Message == "!Up" || e.ChatMessage.Message == "!up" || e.ChatMessage.Message == "!Down" || e.ChatMessage.Message == "!down"
+            || e.ChatMessage.Message == "!Left" || e.ChatMessage.Message == "!left" || e.ChatMessage.Message == "!Right" || e.ChatMessage.Message == "!right")
         {
-            catController.ChatMoveCommand(e.Command.CommandText);
+            catController.ChatMoveCommand(e.ChatMessage.Message, e.ChatMessage.Username);
         }
         /*else
         {
