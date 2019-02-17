@@ -6,11 +6,13 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D playerRB;
     public GameObject net;
+    private float iceTimer;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        iceTimer = Global.Instance.iceTimer;
     }
 
     void FixedUpdate()
@@ -20,6 +22,30 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
         movement = Vector3.ClampMagnitude(movement, 1.0f);
+        
+        if(Global.Instance.playerMoveMode == "Walk")
+        {
+            walk(movement);
+        }
+        else if (Global.Instance.playerMoveMode == "Slide")
+        {
+            glide(movement);
+            iceTimer = iceTimer - Time.deltaTime;
+            if(iceTimer <= 0.0f)
+            {
+                iceTimer = Global.Instance.iceTimer;
+                Global.Instance.playerMoveMode = "Walk";
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            netSwipe();
+        }
+    }
+
+    void walk(Vector3 movement)
+    {
         if (!Global.Instance.playerInRiver)
         {
             playerRB.velocity = movement * Global.Instance.playerSpeed;
@@ -28,11 +54,17 @@ public class Player : MonoBehaviour
         {
             playerRB.velocity = movement * Global.Instance.playerSlowSpeed;
         }
+    }
 
-
-        if (Input.GetKeyDown(KeyCode.F))
+    void glide(Vector3 movement)
+    {
+        if (!Global.Instance.playerInRiver)
         {
-            netSwipe();
+            playerRB.AddForce((movement * Global.Instance.playerSpeed) * Global.Instance.playerSlideMultiplier);
+        }
+        else
+        {
+            playerRB.AddForce((movement * Global.Instance.playerSlowSpeed) * Global.Instance.playerSlideMultiplier);
         }
     }
 

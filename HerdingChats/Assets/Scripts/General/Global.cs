@@ -19,9 +19,11 @@ public class Global : MonoBehaviour
     public float catEvadeCooldown = 0.5f;
     public float catPostMoveTimer = 5.0f;
     public float netTimer = 0.5f;
+    public float iceTimer = 10.0f;
     public int catRayNumber = 8;     //?
     public int catTotalNumber = 20;
     public int catPowerNumber = 2;
+    public float playerSlideMultiplier = 5.0f;
 
     //scores
     public int catPointWorth = 10;
@@ -31,6 +33,7 @@ public class Global : MonoBehaviour
 
     //Toggles
     public bool streamerMode = true;
+    public string playerMoveMode = "Walk";
 
     //End Game
     public bool endGame;

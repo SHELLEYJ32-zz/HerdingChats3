@@ -230,6 +230,10 @@ public class Cat : MonoBehaviour
                 Global.Instance.score += Global.Instance.catPointWorth;
 
             //Debug.Log(Global.Instance.catsCaught);
+            if(gameObject.GetComponent<SpriteRenderer>().sprite.name == "Ice_Chongus")
+            {
+                Global.Instance.playerMoveMode = "Slide";
+            }
             Destroy(gameObject);
             if (Global.Instance.catsCaught == catCount)
             {
