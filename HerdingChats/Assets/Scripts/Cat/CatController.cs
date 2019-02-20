@@ -19,7 +19,6 @@ public class CatController : MonoBehaviour
         GameObject[] cats;
         int r;
         cats = GameObject.FindGameObjectsWithTag("Cat");
-        direction = direction.Remove(0);
 
 
         List<GameObject> catsOnCamera = new List<GameObject>();
