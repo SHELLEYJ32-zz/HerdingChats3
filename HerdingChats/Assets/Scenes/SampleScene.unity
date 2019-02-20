@@ -5167,14 +5167,20 @@ MonoBehaviour:
   catEvadeCooldown: 1
   catPostMoveTimer: 5
   netTimer: 0.5
+  iceTimer: 10
   catRayNumber: 8
   catTotalNumber: 20
   catPowerNumber: 2
+  playerSlideMultiplier: 5
+  catMeowMinGap: 10
+  catMeowMaxGap: 30
+  twitchName: 
   catPointWorth: 10
   timePointWorth: 10
   catComboTimer: 2
   score: 0
   streamerMode: 1
+  playerMoveMode: Walk
   endGame: 0
   catsCaught: 0
   timer: 180

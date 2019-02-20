@@ -7,6 +7,8 @@ public class RestartController : MonoBehaviour
 {
     public void Restart()
     {
+        Global.Instance.score = 0;
+        Global.Instance.endGame = false;
         SceneManager.LoadScene(sceneName: "MainMenu");
     }
 }

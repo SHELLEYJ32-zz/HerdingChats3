@@ -45,7 +45,7 @@ public class Global : MonoBehaviour
 
     //Counters
     public int catsCaught;
-    public float timer = 90f;
+    public float timer = 180.0f;
     public float previousCatCaughtTime;
     public float latterCatCaughtTime;
     public float CatCaughtTimeInterval;
