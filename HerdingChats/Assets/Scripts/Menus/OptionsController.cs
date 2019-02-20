@@ -11,7 +11,7 @@ public class OptionsController : MonoBehaviour
     public Text username;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         if (Global.Instance.twitchName != null)
         {
