@@ -8,7 +8,7 @@ public class TwitchClient : MonoBehaviour
 {
 
     public Client client;
-    public string channelName = "sulu244";
+    public string channelName = Global.Instance.twitchName;
     public GameObject CatControllerObject;
     private float helpTimer;
     private bool helpFlag;

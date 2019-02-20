@@ -27,6 +27,9 @@ public class Global : MonoBehaviour
     public float catMeowMinGap = 10.0f;
     public float catMeowMaxGap = 30.0f;
 
+    //Options
+    public string twitchName;
+
     //scores
     public int catPointWorth = 10;
     public int timePointWorth = 10;
