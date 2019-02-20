@@ -27,7 +27,7 @@ public class TimerController : MonoBehaviour
             if (localTimer - Time.deltaTime >= 0)
             {
                 localTimer -= Time.deltaTime;
-                Debug.Log(localTimer);
+                //Debug.Log(localTimer);
                 minutes = Mathf.Floor(localTimer / 60).ToString("00");
                 seconds = Mathf.RoundToInt(localTimer % 60).ToString("00");
                 TimerText.text = "Time Left: " + minutes + " : " + seconds;

@@ -8,25 +8,37 @@ public class Cat : MonoBehaviour
 
     private Rigidbody2D catRB;
     private Sprite originalSprite;
+
+    //move and drift
     private float moveHorizontal;
     private float moveVertical;
     private float driftHorizontal;
     private float driftVertical;
     private float catMoveTimer;
     private float catDriftTimer;
-    private float catPostMoveTimer;
     private float catMoveChance;
     private float catDriftChance;
     private float catMoveDirectionChance;
     private float catDriftDirectionChance;
     private string catMoveDirection;
+
     private Vector3 drift;
     private Vector3 away;
+
+    //evade
+    private float localCatEvadeCooldown;
+    private float catPostMoveTimer;
     private bool evadeFlag;
     private bool postMoveFlag;
-    private float localCatEvadeCooldown;
+
     private int catCount;
     private float catSoundTimer;
+
+    //caught
+    private float catCaughtRotationSpeed;
+    private float catDisappearTimer;
+    private bool catCaughtFlag;
+    private bool catDestroyFlag;
 
 
     void Start()
@@ -45,6 +57,8 @@ public class Cat : MonoBehaviour
         GameObject[] catArray = GameObject.FindGameObjectsWithTag("Cat");
         catCount = catArray.Length;
         catSoundTimer = Random.Range(Global.Instance.catMeowMinGap, Global.Instance.catMeowMaxGap);
+        catCaughtRotationSpeed = 20.0f;
+        catDisappearTimer = 0.4f;
     }
 
     void FixedUpdate()
@@ -53,7 +67,7 @@ public class Cat : MonoBehaviour
         catDriftTimer += Time.deltaTime;
         catSoundTimer -= Time.deltaTime;
 
-        if (Global.Instance.streamerMode == false)
+        if (!Global.Instance.streamerMode)
         {
             if (catMoveTimer >= catMoveChance)
             {
@@ -61,18 +75,18 @@ public class Cat : MonoBehaviour
             }
         }
 
-        if (evadeFlag == true)
+        if (evadeFlag)
         {
             catRB.velocity = Global.Instance.catEvadeSpeed * drift;
             localCatEvadeCooldown = localCatEvadeCooldown - Time.deltaTime;
 
         }
-        else if (evadeFlag == false && postMoveFlag == false)
+        else if (!evadeFlag && !postMoveFlag)
         {
             catRB.velocity = Global.Instance.catDriftSpeed * drift;
         }
 
-        if (postMoveFlag == true)
+        if (postMoveFlag)
         {
             catPostMoveTimer = catPostMoveTimer - Time.deltaTime;
             if (catPostMoveTimer <= 0.0f)
@@ -100,6 +114,25 @@ public class Cat : MonoBehaviour
         {
             CatSound();
             catSoundTimer = Random.Range(Global.Instance.catMeowMinGap, Global.Instance.catMeowMaxGap);
+        }
+
+        if (catCaughtFlag)
+        {
+            gameObject.transform.Rotate(0, 0, catCaughtRotationSpeed);
+
+            if (catDisappearTimer - Time.deltaTime >= 0)
+            {
+                catDisappearTimer -= Time.deltaTime;
+            }
+            else
+            {
+                catDestroyFlag = true;
+            }
+        }
+
+        if (catDestroyFlag)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -215,9 +248,10 @@ public class Cat : MonoBehaviour
 
     void CatCaught(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") == true)
+        if (collision.gameObject.CompareTag("Player") && !catCaughtFlag)
         {
             CatSound();
+            catCaughtFlag = true;
             Global.Instance.catsCaught = Global.Instance.catsCaught + 1;
             if (System.Math.Abs(Global.Instance.previousCatCaughtTime - 0f) < Mathf.Epsilon)
             {
@@ -239,14 +273,17 @@ public class Cat : MonoBehaviour
             {
                 Global.Instance.playerMoveMode = "Slide";
             }
-            Destroy(gameObject);
+
             if (Global.Instance.catsCaught == catCount)
             {
                 Global.Instance.score += Mathf.RoundToInt(Global.Instance.timer * Global.Instance.timePointWorth);
                 Global.Instance.endGame = true;
             }
+
         }
     }
+
+
 
     public void ChangeSprite()
     {
