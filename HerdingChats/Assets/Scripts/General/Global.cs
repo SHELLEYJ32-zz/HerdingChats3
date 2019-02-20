@@ -24,6 +24,8 @@ public class Global : MonoBehaviour
     public int catTotalNumber = 20;
     public int catPowerNumber = 2;
     public float playerSlideMultiplier = 5.0f;
+    public float catMeowMinGap = 10.0f;
+    public float catMeowMaxGap = 30.0f;
 
     //scores
     public int catPointWorth = 10;

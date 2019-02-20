@@ -5,7 +5,6 @@ using UnityEngine;
 public class Cat : MonoBehaviour
 {
     public Sprite TwitchChongus;
-    public AudioSource Meow;
 
     private Rigidbody2D catRB;
     private Sprite originalSprite;
@@ -27,6 +26,7 @@ public class Cat : MonoBehaviour
     private bool postMoveFlag;
     private float localCatEvadeCooldown;
     private int catCount;
+    private float catSoundTimer;
 
 
     void Start()
@@ -44,13 +44,14 @@ public class Cat : MonoBehaviour
         DriftDirection();
         GameObject[] catArray = GameObject.FindGameObjectsWithTag("Cat");
         catCount = catArray.Length;
+        catSoundTimer = Random.Range(Global.Instance.catMeowMinGap, Global.Instance.catMeowMaxGap);
     }
 
     void FixedUpdate()
     {
-        catMoveTimer = catMoveTimer + Time.deltaTime;
-        catDriftTimer = catDriftTimer + Time.deltaTime;
-
+        catMoveTimer += Time.deltaTime;
+        catDriftTimer += Time.deltaTime;
+        catSoundTimer -= Time.deltaTime;
 
         if (Global.Instance.streamerMode == false)
         {
@@ -95,6 +96,11 @@ public class Cat : MonoBehaviour
             //Debug.Log("Drift direction changed");
         }
 
+        if (catSoundTimer <= 0.0f)
+        {
+            CatSound();
+            catSoundTimer = Random.Range(Global.Instance.catMeowMinGap, Global.Instance.catMeowMaxGap);
+        }
     }
 
     public void Move(string direction)
@@ -194,7 +200,6 @@ public class Cat : MonoBehaviour
     void Evade(Collider2D collider)
     {
         //Debug.Log(gameObject + "Evading");
-        Meow.Play();
         drift = gameObject.transform.position - collider.gameObject.transform.position;
         drift = Vector3.ClampMagnitude(drift, 1.0f);
         catRB.velocity = drift * Global.Instance.catEvadeSpeed;
@@ -212,7 +217,7 @@ public class Cat : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") == true)
         {
-            Meow.Play();
+            CatSound();
             Global.Instance.catsCaught = Global.Instance.catsCaught + 1;
             if (System.Math.Abs(Global.Instance.previousCatCaughtTime - 0f) < Mathf.Epsilon)
             {
@@ -230,7 +235,7 @@ public class Cat : MonoBehaviour
                 Global.Instance.score += Global.Instance.catPointWorth;
 
             //Debug.Log(Global.Instance.catsCaught);
-            if(gameObject.GetComponent<SpriteRenderer>().sprite.name == "Ice_Chongus")
+            if (gameObject.GetComponent<SpriteRenderer>().sprite.name == "Ice_Chongus")
             {
                 Global.Instance.playerMoveMode = "Slide";
             }
@@ -277,6 +282,6 @@ public class Cat : MonoBehaviour
 
     void CatSound()
     {
-        Meow.Play();
+        gameObject.GetComponent<AudioSource>().Play();
     }
 }

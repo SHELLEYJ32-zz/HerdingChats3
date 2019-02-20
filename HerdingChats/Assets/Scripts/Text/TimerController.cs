@@ -6,10 +6,15 @@ using UnityEngine.UI;
 public class TimerController : MonoBehaviour
 {
     public Text TimerText;
+    private string minutes;
+    private string seconds;
 
     void Start()
     {
-        TimerText.text = "Time Left: " + Mathf.RoundToInt(Global.Instance.timer) + " seconds";
+        minutes = Mathf.Floor(Global.Instance.timer / 60).ToString("00");
+        seconds = Mathf.RoundToInt(Global.Instance.timer % 60).ToString("00");
+
+        TimerText.text = "Time Left: " + minutes + " : " + seconds;
     }
 
 
@@ -20,12 +25,14 @@ public class TimerController : MonoBehaviour
             if (Mathf.RoundToInt(Global.Instance.timer - Time.deltaTime) >= 0)
             {
                 Global.Instance.timer -= Time.deltaTime;
-                TimerText.text = "Time Left: " + Mathf.RoundToInt(Global.Instance.timer) + " seconds";
+                minutes = Mathf.Floor(Global.Instance.timer / 60).ToString("00");
+                seconds = Mathf.RoundToInt(Global.Instance.timer % 60).ToString("00");
+                TimerText.text = "Time Left: " + minutes + " : " + seconds;
             }
 
             else
             {
-                TimerText.text = "Time Left: 0 seconds";
+                TimerText.text = "Time Left: 00:00";
                 Global.Instance.timer = 0;
                 Global.Instance.endGame = true;
             }
