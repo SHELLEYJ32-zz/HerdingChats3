@@ -289,12 +289,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4afc47d3a12ffe46821a6a23cac25c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
-  playerSlowSpeed: 3
+  playerSpeed: 10
+  playerSlowSpeed: 6
   catMoveForce: 500
   catMoveTimeMax: 10
   catMoveTimeMin: 1
-  catEvadeSpeed: 7
+  catEvadeSpeed: 12
   catDriftSpeed: 2
   catEvadeCooldown: 1
   catPostMoveTimer: 5
