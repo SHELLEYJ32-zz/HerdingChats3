@@ -33,8 +33,8 @@ public class CatController : MonoBehaviour
         {
             r = Random.Range(0, cats.Length);
             selectedCat = cats[r];
-            selectedCat.GetComponent<Cat>().UserNameDisplay(user);
-            selectedCat.GetComponent<Cat>().Move(direction);
+            selectedCat.GetComponent<Cat>().camera = camera;
+            selectedCat.GetComponent<Cat>().Move(direction, user);
             selectedCat.GetComponent<Cat>().ChangeSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
         }
@@ -42,8 +42,8 @@ public class CatController : MonoBehaviour
         {
             r = Random.Range(0, catsOnCamera.Count);
             selectedCat = catsOnCamera[r];
-            selectedCat.GetComponent<Cat>().UserNameDisplay(user);
-            selectedCat.GetComponent<Cat>().Move(direction);
+            selectedCat.GetComponent<Cat>().camera = camera;
+            selectedCat.GetComponent<Cat>().Move(direction, user);
             selectedCat.GetComponent<Cat>().ChangeSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
         }

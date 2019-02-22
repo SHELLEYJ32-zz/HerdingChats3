@@ -306,6 +306,7 @@ MonoBehaviour:
   playerSlideMultiplier: 5
   catMeowMinGap: 10
   catMeowMaxGap: 30
+  userNameFadeTimer: 1
   twitchName: 
   catPointWorth: 10
   timePointWorth: 10

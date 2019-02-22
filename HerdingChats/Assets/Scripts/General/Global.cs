@@ -26,6 +26,7 @@ public class Global : MonoBehaviour
     public float playerSlideMultiplier = 5.0f;
     public float catMeowMinGap = 10.0f;
     public float catMeowMaxGap = 30.0f;
+    public float userNameFadeTimer = 1.0f;
 
     //Options
     public string twitchName;

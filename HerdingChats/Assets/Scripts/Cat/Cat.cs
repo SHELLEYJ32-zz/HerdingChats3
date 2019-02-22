@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cat : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Cat : MonoBehaviour
 
     private Rigidbody2D catRB;
     private Sprite originalSprite;
+    private GameObject TwitchName;
+    public Camera camera;
 
     //move and drift
     private float moveHorizontal;
@@ -59,6 +62,7 @@ public class Cat : MonoBehaviour
         catSoundTimer = Random.Range(Global.Instance.catMeowMinGap, Global.Instance.catMeowMaxGap);
         catCaughtRotationSpeed = 20.0f;
         catDisappearTimer = 0.4f;
+        TwitchName = Resources.Load("TwitchName") as GameObject;
     }
 
     void FixedUpdate()
@@ -140,7 +144,7 @@ public class Cat : MonoBehaviour
         }
     }
 
-    public void Move(string direction)
+    public void Move(string direction, string userName = "None")
     {
         //Debug.Log("Cat " + gameObject + " moved " + direction + "!");
         if (direction == "!Up" || direction == "!up" || direction == "!u")
@@ -166,6 +170,10 @@ public class Cat : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0.0f);
         catRB.AddForce(movement);
+        if (Global.Instance.streamerMode)
+        {
+            UserNameDisplay(userName, camera);
+        }
         postMoveFlag = true;
     }
 
@@ -294,9 +302,11 @@ public class Cat : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = TwitchChongus;
     }
 
-    public void UserNameDisplay(string userName)
+    public void UserNameDisplay(string userName, Camera mainCamera)
     {
-        Debug.Log(userName);
+        GameObject newName = Instantiate(TwitchName);
+        newName.transform.position = gameObject.transform.position;
+        newName.GetComponent<UserNameCreator>().Name(userName, mainCamera);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
