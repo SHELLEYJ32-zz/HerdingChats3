@@ -11,7 +11,7 @@ public class SpriteRenderOrderController : MonoBehaviour
 
         foreach (SpriteRenderer renderer in renderers)
         {
-            renderer.sortingOrder = (int)renderer.transform.position.y * -1;
+            renderer.sortingOrder = (int)(renderer.transform.position.y * -10);
         }
 
     }
