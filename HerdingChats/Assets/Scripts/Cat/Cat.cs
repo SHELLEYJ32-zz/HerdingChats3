@@ -143,22 +143,22 @@ public class Cat : MonoBehaviour
     public void Move(string direction)
     {
         //Debug.Log("Cat " + gameObject + " moved " + direction + "!");
-        if (direction == "!Up" || direction == "!up")
+        if (direction == "!Up" || direction == "!up" || direction == "!u")
         {
             moveHorizontal = 0.0f;
             moveVertical = Global.Instance.catMoveForce;
         }
-        else if (direction == "!Down" || direction == "!down")
+        else if (direction == "!Down" || direction == "!down" || direction == "!d")
         {
             moveHorizontal = 0.0f;
             moveVertical = -Global.Instance.catMoveForce;
         }
-        else if (direction == "!Left" || direction == "!left")
+        else if (direction == "!Left" || direction == "!left" || direction == "!l")
         {
             moveHorizontal = -Global.Instance.catMoveForce;
             moveVertical = 0.0f;
         }
-        else if (direction == "!Right" || direction == "!right")
+        else if (direction == "!Right" || direction == "!right" || direction == "!r")
         {
             moveHorizontal = Global.Instance.catMoveForce;
             moveVertical = 0.0f;

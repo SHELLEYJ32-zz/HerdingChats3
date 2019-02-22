@@ -52,7 +52,8 @@ public class TwitchClient : MonoBehaviour
             helpFlag = true;
         }
         else if (e.ChatMessage.Message == "!Up" || e.ChatMessage.Message == "!up" || e.ChatMessage.Message == "!Down" || e.ChatMessage.Message == "!down"
-            || e.ChatMessage.Message == "!Left" || e.ChatMessage.Message == "!left" || e.ChatMessage.Message == "!Right" || e.ChatMessage.Message == "!right")
+            || e.ChatMessage.Message == "!Left" || e.ChatMessage.Message == "!left" || e.ChatMessage.Message == "!Right" || e.ChatMessage.Message == "!right"
+            || e.ChatMessage.Message == "!u" || e.ChatMessage.Message == "!d" || e.ChatMessage.Message == "!l" || e.ChatMessage.Message == "!r")
         {
             catController.ChatMoveCommand(e.ChatMessage.Message, e.ChatMessage.Username);
         }
@@ -70,6 +71,7 @@ public class TwitchClient : MonoBehaviour
 
     private void Help()
     {
-        client.SendMessage(client.JoinedChannels[0], "Welcome to Herding Chats! You can use chat commands to help the cats avoid the player! The valid commands are: !Up, !Down, !Left, !Right");
+        client.SendMessage(client.JoinedChannels[0], "Welcome to Herding Chats! You can use chat commands to help the cats avoid the player!" +
+            " The valid commands are: !Up, !Down, !Left, !Right. Alternatively, you can use !u, !d, !l, !r");
     }
 }
