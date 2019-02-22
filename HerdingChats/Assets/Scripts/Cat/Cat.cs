@@ -118,9 +118,9 @@ public class Cat : MonoBehaviour
 
         if (catCaughtFlag)
         {
-            if(gameObject.GetComponent<PolygonCollider2D>().enabled == true)
+            if(gameObject.GetComponent<PolygonCollider2D>().enabled)
             {
-                gameObject.GetComponent<PolygonCollider2D>().enabled = gameObject.GetComponent<PolygonCollider2D>().enabled;
+                gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             }
             gameObject.transform.Rotate(0, 0, catCaughtRotationSpeed);
 
