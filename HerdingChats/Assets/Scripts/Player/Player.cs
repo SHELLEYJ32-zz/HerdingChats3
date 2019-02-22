@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D playerRB;
-    public GameObject net;
+    //public GameObject net;
     private float iceTimer;
 
     // Start is called before the first frame update
@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody2D>();
         iceTimer = Global.Instance.iceTimer;
+        Global.Instance.playerMoveMode = "Walk";
+        Global.Instance.playerInRiver = false;
     }
 
     void FixedUpdate()
@@ -22,8 +24,8 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
         movement = Vector3.ClampMagnitude(movement, 1.0f);
-        
-        if(Global.Instance.playerMoveMode == "Walk")
+
+        if (Global.Instance.playerMoveMode == "Walk")
         {
             walk(movement);
         }
@@ -31,17 +33,17 @@ public class Player : MonoBehaviour
         {
             glide(movement);
             iceTimer = iceTimer - Time.deltaTime;
-            if(iceTimer <= 0.0f)
+            if (iceTimer <= 0.0f)
             {
                 iceTimer = Global.Instance.iceTimer;
                 Global.Instance.playerMoveMode = "Walk";
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            netSwipe();
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    netSwipe();
+        //}
     }
 
     void walk(Vector3 movement)
@@ -68,12 +70,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    void netSwipe()
-    {
-        Vector3 netPosition = gameObject.transform.position;
-        GameObject newNet = Instantiate(net, netPosition, Quaternion.identity);
-        newNet.transform.SetParent(gameObject.transform);
-    }
+    //void netSwipe()
+    //{
+    //    Vector3 netPosition = gameObject.transform.position;
+    //    GameObject newNet = Instantiate(net, netPosition, Quaternion.identity);
+    //    newNet.transform.SetParent(gameObject.transform);
+    //}
 
 
 }
