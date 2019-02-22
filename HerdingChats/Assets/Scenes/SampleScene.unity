@@ -5200,7 +5200,7 @@ PrefabInstance:
     - target: {fileID: 9213754137800725050, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22,
         type: 3}
       propertyPath: m_Tiles.Array.data[10].first.y
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9213754137800725050, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22,
         type: 3}
@@ -5620,7 +5620,7 @@ PrefabInstance:
     - target: {fileID: 9213754137800725049, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22,
         type: 3}
       propertyPath: m_Mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9213754137800725049, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22,
         type: 3}
@@ -5640,7 +5640,7 @@ PrefabInstance:
     - target: {fileID: 9213754137800725049, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: -1000
       objectReference: {fileID: 0}
     - target: {fileID: 9213754137800725048, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22,
         type: 3}
@@ -8647,7 +8647,7 @@ MonoBehaviour:
   playerSlideMultiplier: 5
   catMeowMinGap: 10
   catMeowMaxGap: 30
-  userNameFadeTimer: 5
+  userNameFadeTimer: 1
   twitchName: 
   catPointWorth: 10
   timePointWorth: 10
@@ -14294,7 +14294,7 @@ PrefabInstance:
     - target: {fileID: 9213754137800725049, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22,
         type: 3}
       propertyPath: m_Mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9213754137800725049, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22,
         type: 3}
@@ -14314,7 +14314,7 @@ PrefabInstance:
     - target: {fileID: 9213754137800725049, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8a83e6bcc5a14a55b8dcfaa0b0a2c22, type: 3}
