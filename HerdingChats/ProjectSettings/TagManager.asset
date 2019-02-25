@@ -49,6 +49,9 @@ TagManager:
   - name: River
     uniqueID: 1836018203
     locked: 0
+  - name: Obstacle
+    uniqueID: 22020813
+    locked: 0
   - name: Main
     uniqueID: 4091365343
     locked: 0
