@@ -8,7 +8,7 @@ public class TwitchClient : MonoBehaviour
 {
 
     public Client client;
-    public string channelName = Global.Instance.twitchName;
+    public string channelName;
     public GameObject CatControllerObject;
     private float helpTimer;
     private bool helpFlag;
@@ -18,6 +18,7 @@ public class TwitchClient : MonoBehaviour
     void Start()
     {
         Application.runInBackground = true;
+        channelName = Global.Instance.twitchName;
 
         ConnectionCredentials credentials = new ConnectionCredentials("mrtwitchboto", Secrets.Instance.accessToken);
         client = new Client();
