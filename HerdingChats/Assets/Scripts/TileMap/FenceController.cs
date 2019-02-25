@@ -9,16 +9,16 @@ public class FenceController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Cat")
         {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), gameObject.GetComponent<Collider2D>(), true);
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), gameObject.GetComponent<BoxCollider2D>(), true);
         }
 
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit2D(Collision collision)
     {
         if (collision.gameObject.tag == "Cat")
         {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), gameObject.GetComponent<Collider2D>(), false);
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), gameObject.GetComponent<BoxCollider2D>(), false);
         }
     }
 }
