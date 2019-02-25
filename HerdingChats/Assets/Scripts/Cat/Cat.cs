@@ -12,6 +12,9 @@ public class Cat : MonoBehaviour
     private GameObject TwitchName;
     private AudioClip meowChoice;
     public Camera camera;
+
+
+    //Audio
     public AudioClip meow1;
     public AudioClip meow2;
     public AudioClip meow3;
