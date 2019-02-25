@@ -8,10 +8,13 @@ public class UserNameCreator : MonoBehaviour
 
     public Text userNameDisplay;
     private float fadeTimer;
+    private Rigidbody2D rb;
 
     void Start()
     {
         fadeTimer = Global.Instance.userNameFadeTimer;
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        Impulse();
     }
 
     public void Name(string userName, Camera camera)
@@ -28,5 +31,11 @@ public class UserNameCreator : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void Impulse()
+    {
+        Vector3 force = new Vector3(0, 200, 0);
+        rb.AddForce(force);
     }
 }

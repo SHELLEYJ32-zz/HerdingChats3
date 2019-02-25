@@ -119,6 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TwitchChongus: {fileID: 21300000, guid: 19c1c6426ad684d3db3da5c34d80c07f, type: 3}
+  camera: {fileID: 0}
+  meow1: {fileID: 8300000, guid: 34f90d18ebe33be4994d409d6819368c, type: 3}
+  meow2: {fileID: 8300000, guid: 5b6c3ff33f9034733a101c8cf9ed286a, type: 3}
+  meow3: {fileID: 8300000, guid: 38924a2fc07b2495aaf30578c2efe7ed, type: 3}
 --- !u!58 &1997666608
 CircleCollider2D:
   m_ObjectHideFlags: 0

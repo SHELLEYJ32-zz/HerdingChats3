@@ -10,7 +10,11 @@ public class Cat : MonoBehaviour
     private Rigidbody2D catRB;
     private Sprite originalSprite;
     private GameObject TwitchName;
+    private AudioClip meowChoice;
     public Camera camera;
+    public AudioClip meow1;
+    public AudioClip meow2;
+    public AudioClip meow3;
 
     //move and drift
     private float moveHorizontal;
@@ -333,6 +337,20 @@ public class Cat : MonoBehaviour
 
     void CatSound()
     {
+        float randomMeow = Random.Range(0.0f, 3.0f);
+        if (randomMeow < 1.0f)
+        {
+            meowChoice = meow1;
+        }
+        else if (randomMeow >= 1.0f && randomMeow < 2.0f)
+        {
+            meowChoice = meow2;
+        }
+        else if (randomMeow > 2.0f)
+        {
+            meowChoice = meow3;
+        }
+        gameObject.GetComponent<AudioSource>().clip = meowChoice;
         gameObject.GetComponent<AudioSource>().Play();
     }
 }
