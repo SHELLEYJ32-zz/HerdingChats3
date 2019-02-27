@@ -14,4 +14,9 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName: "Options");
     }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene(sceneName: "Credits");
+    }
 }
