@@ -52,28 +52,28 @@ public class Cat : MonoBehaviour
 
     void Start()
     {
-        catRB = gameObject.GetComponent<Rigidbody2D>();
-        originalSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-        catMoveTimer = 0.0f;
-        catMoveDirectionChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax);
-        catMoveChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax);
-        catDriftChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax);
-        localCatEvadeCooldown = Global.Instance.catEvadeCooldown;
-        catPostMoveTimer = Global.Instance.catPostMoveTimer;
-        drift = Vector3.zero;
+        catRB = gameObject.GetComponent<Rigidbody2D>(); //Get the cats Rigidbody2D
+        originalSprite = gameObject.GetComponent<SpriteRenderer>().sprite; //Save the sprite the cat spawned with so we can change it back later
+        catMoveTimer = 0.0f; //set cat move timer
+        catMoveDirectionChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax); //set an initial random value for the cats move direction
+        catMoveChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax); //set an initial random value for the cats chance to move
+        catDriftChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax); //set an initial random value for the cats chance to change drift direction
+        localCatEvadeCooldown = Global.Instance.catEvadeCooldown; //set the cats evade cooldown
+        catPostMoveTimer = Global.Instance.catPostMoveTimer; // set the length of time the cat will idle after moving
+        drift = Vector3.zero; //initialize empty Vectors for drift and evasion
         away = Vector3.zero;
-        DriftDirection();
-        GameObject[] catArray = GameObject.FindGameObjectsWithTag("Cat");
-        catCount = catArray.Length;
-        catSoundTimer = Random.Range(Global.Instance.catMeowMinGap, Global.Instance.catMeowMaxGap);
-        catCaughtRotationSpeed = 20.0f;
-        catDisappearTimer = 0.4f;
-        TwitchName = Resources.Load("TwitchName") as GameObject;
+        DriftDirection(); //Start the cat drifting
+        GameObject[] catArray = GameObject.FindGameObjectsWithTag("Cat"); //get array of all cats in scene
+        catCount = catArray.Length; //count them for later
+        catSoundTimer = Random.Range(Global.Instance.catMeowMinGap, Global.Instance.catMeowMaxGap); //set initial random value for time to meow
+        catCaughtRotationSpeed = 20.0f; //set speed for cought spin
+        catDisappearTimer = 0.4f; //set time for cat to kepp spinning
+        TwitchName = Resources.Load("TwitchName") as GameObject; //ready the prefab to display twitch users names
     }
 
     void FixedUpdate()
     {
-        catMoveTimer += Time.deltaTime;
+        catMoveTimer += Time.deltaTime; //Increment all timers
         catDriftTimer += Time.deltaTime;
         catSoundTimer -= Time.deltaTime;
 
