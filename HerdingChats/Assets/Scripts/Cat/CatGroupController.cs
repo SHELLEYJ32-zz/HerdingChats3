@@ -13,7 +13,6 @@ public class CatGroupController : MonoBehaviour
     public Sprite Normal4;
     public Sprite Normal5;
     public Sprite IcePower;
-    public Sprite ScaryPower;
 
     private GameObject[] catArray;
     private Sprite[] NormalSpriteArray;
@@ -29,7 +28,7 @@ public class CatGroupController : MonoBehaviour
         float catHeight = catPrefab.GetComponent<Renderer>().bounds.size.y;
         float catPosStartY = player.transform.position.y - 3 * catHeight;
         NormalSpriteArray = new Sprite[] { Normal1, Normal2, Normal3, Normal4, Normal5 };
-        PowerSpriteArray = new Sprite[] { IcePower, ScaryPower };
+        PowerSpriteArray = new Sprite[] {IcePower};
 
         for (int i = 0; i < catArray.Length; i++)
         {
