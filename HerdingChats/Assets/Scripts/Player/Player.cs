@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Sprite playerFront;
+    public Sprite playerSide;
     private Rigidbody2D playerRB;
-    //public GameObject net;
     private float iceTimer;
     private AudioSource footstep;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.GetComponent<SpriteRenderer>().sprite = playerFront;
         playerRB = GetComponent<Rigidbody2D>();
         footstep = gameObject.GetComponent<AudioSource>();
         iceTimer = Global.Instance.iceTimer;
@@ -29,8 +31,24 @@ public class Player : MonoBehaviour
 
         //if (movement.magnitude > 0 && !footstep.isPlaying)
         //{
-           //footstep.Play();
+        //footstep.Play();
         //}
+
+        if (movement.x < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = playerSide;
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if (movement.x > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = playerSide;
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = playerFront;
+        }
+
 
         if (Global.Instance.playerMoveMode == "Walk")
         {
@@ -47,10 +65,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    netSwipe();
-        //}
+
     }
 
     void walk(Vector3 movement)
