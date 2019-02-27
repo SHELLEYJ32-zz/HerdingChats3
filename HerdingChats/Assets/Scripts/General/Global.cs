@@ -29,7 +29,7 @@ public class Global : MonoBehaviour
     public float userNameFadeTimer = 1.0f;
 
     //Options
-    public string twitchName;
+    public string twitchName = null;
 
     //scores
     public int catPointWorth = 10;
