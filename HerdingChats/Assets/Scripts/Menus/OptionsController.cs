@@ -25,7 +25,10 @@ public class OptionsController : MonoBehaviour
 
     public void OnUsernameChange()
     {
-        Global.Instance.twitchName = username.text;
+        if (username.text != null)
+        {
+            Global.Instance.twitchName = username.text;
+        }
     }
 
     public void ReturnMenu()
