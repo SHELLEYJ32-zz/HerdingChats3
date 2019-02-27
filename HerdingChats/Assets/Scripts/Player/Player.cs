@@ -27,10 +27,10 @@ public class Player : MonoBehaviour
         movement.y = Input.GetAxis("Vertical");
         movement = Vector3.ClampMagnitude(movement, 1.0f);
 
-        if (movement.magnitude > 0 && !footstep.isPlaying)
-        {
-            footstep.Play();
-        }
+        //if (movement.magnitude > 0 && !footstep.isPlaying)
+        //{
+           //footstep.Play();
+        //}
 
         if (Global.Instance.playerMoveMode == "Walk")
         {
