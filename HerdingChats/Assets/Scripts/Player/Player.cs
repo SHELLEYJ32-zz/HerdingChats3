@@ -7,11 +7,13 @@ public class Player : MonoBehaviour
     private Rigidbody2D playerRB;
     //public GameObject net;
     private float iceTimer;
+    private AudioSource footstep;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        footstep = gameObject.GetComponent<AudioSource>();
         iceTimer = Global.Instance.iceTimer;
         Global.Instance.playerMoveMode = "Walk";
         Global.Instance.playerInRiver = false;
@@ -24,6 +26,11 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
         movement = Vector3.ClampMagnitude(movement, 1.0f);
+
+        if (movement.magnitude > 0 && !footstep.isPlaying)
+        {
+            footstep.Play();
+        }
 
         if (Global.Instance.playerMoveMode == "Walk")
         {
@@ -69,13 +76,6 @@ public class Player : MonoBehaviour
             playerRB.AddForce((movement * Global.Instance.playerSlowSpeed) * Global.Instance.playerSlideMultiplier);
         }
     }
-
-    //void netSwipe()
-    //{
-    //    Vector3 netPosition = gameObject.transform.position;
-    //    GameObject newNet = Instantiate(net, netPosition, Quaternion.identity);
-    //    newNet.transform.SetParent(gameObject.transform);
-    //}
 
 
 }
