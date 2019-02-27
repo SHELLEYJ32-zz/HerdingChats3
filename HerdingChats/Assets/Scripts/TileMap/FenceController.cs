@@ -14,7 +14,7 @@ public class FenceController : MonoBehaviour
 
     }
 
-    private void OnCollisionExit2D(Collision collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Cat")
         {

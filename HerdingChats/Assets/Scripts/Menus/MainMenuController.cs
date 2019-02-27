@@ -7,7 +7,7 @@ public class MainMenuController : MonoBehaviour
 {
     public void LevelSelect()
     {
-        SceneManager.LoadScene(sceneName: "LevelSelect");
+        SceneManager.LoadScene(sceneName: "Tutorial");
     }
 
     public void Options()

@@ -11,7 +11,6 @@ public class Cat : MonoBehaviour
     private Sprite originalSprite;
     private GameObject TwitchName;
     private AudioClip meowChoice;
-    public Camera camera;
 
 
     //Audio
@@ -179,7 +178,7 @@ public class Cat : MonoBehaviour
         catRB.AddForce(movement);
         if (Global.Instance.streamerMode)
         {
-            UserNameDisplay(userName, camera);
+            UserNameDisplay(userName);
         }
         postMoveFlag = true;
     }
@@ -309,11 +308,11 @@ public class Cat : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = TwitchChongus;
     }
 
-    public void UserNameDisplay(string userName, Camera mainCamera)
+    public void UserNameDisplay(string userName)
     {
         GameObject newName = Instantiate(TwitchName);
         newName.transform.position = gameObject.transform.position;
-        newName.GetComponent<UserNameCreator>().Name(userName, mainCamera);
+        newName.GetComponent<UserNameCreator>().Name(userName);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

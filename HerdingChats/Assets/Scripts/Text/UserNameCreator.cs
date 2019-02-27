@@ -17,11 +17,11 @@ public class UserNameCreator : MonoBehaviour
         Impulse();
     }
 
-    public void Name(string userName, Camera camera)
+    public void Name(string userName)
     {
         Debug.Log(userName);
         userNameDisplay.text = userName;
-        gameObject.GetComponentInChildren<Canvas>().worldCamera = camera;
+        gameObject.GetComponentInChildren<Canvas>().worldCamera = GetComponent<Camera>();
     }
 
     private void Update()

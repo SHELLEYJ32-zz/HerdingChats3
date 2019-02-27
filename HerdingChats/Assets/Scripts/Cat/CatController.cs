@@ -7,11 +7,11 @@ public class CatController : MonoBehaviour
 
 
     private GameObject selectedCat;
-    private Camera camera;
+    private new Camera camera;
 
     void Start()
     {
-        camera = Camera.main.GetComponent<Camera>();
+        camera = FindObjectOfType<Camera>().GetComponent<Camera>();
     }
 
     public void ChatMoveCommand(string direction, string user)
@@ -33,7 +33,6 @@ public class CatController : MonoBehaviour
         {
             r = Random.Range(0, cats.Length);
             selectedCat = cats[r];
-            selectedCat.GetComponent<Cat>().camera = camera;
             selectedCat.GetComponent<Cat>().Move(direction, user);
             selectedCat.GetComponent<Cat>().ChangeSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
@@ -42,7 +41,6 @@ public class CatController : MonoBehaviour
         {
             r = Random.Range(0, catsOnCamera.Count);
             selectedCat = catsOnCamera[r];
-            selectedCat.GetComponent<Cat>().camera = camera;
             selectedCat.GetComponent<Cat>().Move(direction, user);
             selectedCat.GetComponent<Cat>().ChangeSprite();
             //Debug.Log("Cat " + selectedCat + " Moved");
