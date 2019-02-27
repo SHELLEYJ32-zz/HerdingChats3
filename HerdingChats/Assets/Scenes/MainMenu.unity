@@ -369,14 +369,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
-  playerSlowSpeed: 6
+  playerSlowSpeed: 3
   catMoveForce: 500
   catMoveTimeMax: 10
   catMoveTimeMin: 1
   catEvadeSpeed: 12
   catDriftSpeed: 2
-  catEvadeCooldown: 1
-  catPostMoveTimer: 3
+  catEvadeCooldown: 0.5
+  catPostMoveTimer: 5
   netTimer: 0.5
   iceTimer: 10
   catRayNumber: 8
@@ -390,12 +390,14 @@ MonoBehaviour:
   catPointWorth: 10
   timePointWorth: 10
   catComboTimer: 2
-  score: 0
+  catScore: 0
+  finalScore: 0
   streamerMode: 1
   playerMoveMode: Walk
   endGame: 0
   catsCaught: 0
-  timer: 180
+  timer: 10
+  RemainingTime: 0
   previousCatCaughtTime: 0
   latterCatCaughtTime: 0
   CatCaughtTimeInterval: 0

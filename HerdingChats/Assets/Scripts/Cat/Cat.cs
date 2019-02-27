@@ -128,7 +128,7 @@ public class Cat : MonoBehaviour
 
         if (catCaughtFlag)
         {
-            if(gameObject.GetComponent<PolygonCollider2D>().enabled)
+            if (gameObject.GetComponent<PolygonCollider2D>().enabled)
             {
                 gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             }
@@ -282,9 +282,9 @@ public class Cat : MonoBehaviour
                 Global.Instance.previousCatCaughtTime = Global.Instance.latterCatCaughtTime;
             }
             if (Global.Instance.catsCaught != 1 && Global.Instance.CatCaughtTimeInterval <= Global.Instance.catComboTimer)
-                Global.Instance.score += Global.Instance.catPointWorth * 2;
+                Global.Instance.catScore += Global.Instance.catPointWorth * 2;
             else
-                Global.Instance.score += Global.Instance.catPointWorth;
+                Global.Instance.catScore += Global.Instance.catPointWorth;
 
             //Debug.Log(Global.Instance.catsCaught);
             if (gameObject.GetComponent<SpriteRenderer>().sprite.name == "Ice_Chongus")
@@ -294,13 +294,11 @@ public class Cat : MonoBehaviour
 
             if (Global.Instance.catsCaught == catCount)
             {
-                Global.Instance.score += Mathf.RoundToInt(Global.Instance.timer * Global.Instance.timePointWorth);
                 Global.Instance.endGame = true;
             }
 
         }
     }
-
 
 
     public void ChangeSprite()

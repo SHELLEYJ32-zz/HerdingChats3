@@ -35,7 +35,8 @@ public class Global : MonoBehaviour
     public int catPointWorth = 10;
     public int timePointWorth = 10;
     public int catComboTimer = 2;
-    public int score;
+    public int catScore;
+    public int finalScore;
 
     //Toggles
     public bool streamerMode = true;
@@ -47,6 +48,7 @@ public class Global : MonoBehaviour
     //Counters
     public int catsCaught;
     public float timer = 180.0f;
+    public float RemainingTime;
     public float previousCatCaughtTime;
     public float latterCatCaughtTime;
     public float CatCaughtTimeInterval;
