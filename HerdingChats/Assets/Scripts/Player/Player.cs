@@ -22,8 +22,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        Global.Instance.CheckEndGame();
-        Vector3 movement = Vector3.zero;
+        Global.Instance.CheckEndGame(); //check to see if the game is over
+        Vector3 movement = Vector3.zero; //Get players control input
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
         movement = Vector3.ClampMagnitude(movement, 1.0f);
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         //footstep.Play();
         //}
 
-        if (movement.x < 0)
+        if (movement.x < 0) //check movement direction to determine which sprite to display
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = playerSide;
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = playerFront;
         }
 
-        if (Global.Instance.playerNewIceCat)
+        if (Global.Instance.playerNewIceCat) //check to see if player has cought an ice cat
         {
             //reset iceTimer with new ice cat
             iceTimer = Global.Instance.iceTimer;
