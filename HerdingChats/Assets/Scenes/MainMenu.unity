@@ -396,7 +396,7 @@ MonoBehaviour:
   playerMoveMode: Walk
   endGame: 0
   catsCaught: 0
-  timer: 10
+  timer: 150
   RemainingTime: 0
   previousCatCaughtTime: 0
   latterCatCaughtTime: 0
