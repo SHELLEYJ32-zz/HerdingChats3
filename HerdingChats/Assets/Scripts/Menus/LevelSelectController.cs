@@ -9,4 +9,9 @@ public class LevelSelectController : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName: "SampleScene");
     }
+
+    public void Back()
+    {
+        SceneManager.LoadScene(sceneName: "MainMenu");
+    }
 }
