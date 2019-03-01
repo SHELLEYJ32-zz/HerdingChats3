@@ -13,7 +13,7 @@ public class OptionsController : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-        if (Global.Instance.twitchName != null)
+        if (Global.Instance.twitchName != "")
         {
             usernamePlaceholder.text = Global.Instance.twitchName;
         }
@@ -25,7 +25,7 @@ public class OptionsController : MonoBehaviour
 
     public void OnUsernameChange()
     {
-        if (username.text != null)
+        if (username.text != "")
         {
             Global.Instance.twitchName = username.text;
         }
