@@ -55,6 +55,7 @@ public class Global : MonoBehaviour
     public float CatCaughtTimeInterval;
 
     //state
+    public bool playerStill;
     public bool playerInRiver;
     public bool playerNewIceCat;
 

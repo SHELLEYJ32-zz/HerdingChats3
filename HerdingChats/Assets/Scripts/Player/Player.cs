@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Global.Instance.playerStill = true;
         gameObject.GetComponent<SpriteRenderer>().sprite = playerFront;
         playerRB = GetComponent<Rigidbody2D>();
         footstep = gameObject.GetComponent<AudioSource>();
@@ -27,6 +28,17 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
         movement = Vector3.ClampMagnitude(movement, 1.0f);
+
+
+        if (movement.magnitude > 0 || movement.magnitude < 0) //check if player is still
+        {
+            Global.Instance.playerStill = false;
+        }
+        else
+        {
+            Global.Instance.playerStill = true;
+        }
+
 
         //if (movement.magnitude > 0 && !footstep.isPlaying)
         //{

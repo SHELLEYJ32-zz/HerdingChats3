@@ -341,8 +341,18 @@ public class Cat : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            evadeFlag = true;
-            Evade(collider, Global.Instance.catSlowEvadeSpeed);
+            if (Global.Instance.playerStill)
+            {
+                if (catDriftTimer >= catDriftChance)
+                {
+                    DriftDirection();
+                }
+            }
+            else
+            {
+                evadeFlag = true;
+                Evade(collider, Global.Instance.catFastEvadeSpeed);
+            }
         }
     }
 
