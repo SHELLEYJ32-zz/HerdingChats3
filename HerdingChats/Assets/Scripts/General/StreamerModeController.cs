@@ -7,6 +7,8 @@ public class StreamerModeController : MonoBehaviour
 {
     public Text streamerModeButtontext;
 
+    //Controlls the button to toggle whether the game will take twitch commands
+
     void Start()
     {
         streamerModeButtontext.text = "Streamer Mode: ON";

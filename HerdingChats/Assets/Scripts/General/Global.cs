@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Global : MonoBehaviour
 {
+    //this class is accesspible frm anywhere in the game, and holds all of the games global variables
 
     public static Global Instance; //Creates a new instance if one does not yet exist
 
@@ -20,7 +21,6 @@ public class Global : MonoBehaviour
     public float catPostMoveTimer = 5.0f;
     public float netTimer = 0.5f;
     public float iceTimer = 10.0f;
-    public int catRayNumber = 8;     //?
     public int catTotalNumber = 20;
     public int catPowerNumber = 2;
     public float playerSlideMultiplier = 5.0f;
@@ -70,11 +70,11 @@ public class Global : MonoBehaviour
         }
     }
 
-    public void CheckEndGame()
+    public void CheckEndGame() //if the game timer reaches zero, end the game
     {
         if (System.Math.Abs(timer - 0) < Mathf.Epsilon)
             endGame = true;
-        if (endGame)
+        if (endGame) //can be triggered by cathing all of the cats
             SceneManager.LoadScene(sceneName: "EndScene");
     }
 

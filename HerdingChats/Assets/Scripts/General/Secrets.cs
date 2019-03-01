@@ -5,7 +5,7 @@ using UnityEngine;
 public class Secrets : MonoBehaviour
 {
     public static Secrets Instance;
-
+    //Holds info of the twitch bot
     void Awake()
     {
         if (Instance == null)
