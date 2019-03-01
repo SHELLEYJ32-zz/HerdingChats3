@@ -315,13 +315,15 @@ public class Cat : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer != 10 || collision.gameObject.layer != 12)
+
+        if (collision.gameObject.layer != 12)
         {
             MoveAway(collision);
-        }
-        else if (collision.gameObject.layer == 10)
-        {
-            CatCaught(collision);
+
+            if (collision.gameObject.layer == 10)
+            {
+                CatCaught(collision);
+            }
         }
     }
 

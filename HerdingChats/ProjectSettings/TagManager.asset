@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cat
   - Net
+  - Fence
   layers:
   - Default
   - TransparentFX
