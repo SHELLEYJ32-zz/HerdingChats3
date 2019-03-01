@@ -289,7 +289,7 @@ public class Cat : MonoBehaviour
             //Debug.Log(Global.Instance.catsCaught);
             if (gameObject.GetComponent<SpriteRenderer>().sprite.name == "Ice_Chongus")
             {
-                Global.Instance.playerMoveMode = "Slide";
+                Global.Instance.playerNewIceCat = true;
             }
 
             if (Global.Instance.catsCaught == catCount)

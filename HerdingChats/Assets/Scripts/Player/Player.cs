@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = playerFront;
         playerRB = GetComponent<Rigidbody2D>();
         footstep = gameObject.GetComponent<AudioSource>();
-        iceTimer = Global.Instance.iceTimer;
         Global.Instance.playerMoveMode = "Walk";
         Global.Instance.playerInRiver = false;
     }
@@ -49,6 +48,13 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = playerFront;
         }
 
+        if (Global.Instance.playerNewIceCat)
+        {
+            //reset iceTimer with new ice cat
+            iceTimer = Global.Instance.iceTimer;
+            Global.Instance.playerMoveMode = "Slide";
+            Global.Instance.playerNewIceCat = false;
+        }
 
         if (Global.Instance.playerMoveMode == "Walk")
         {

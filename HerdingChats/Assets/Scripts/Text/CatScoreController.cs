@@ -9,13 +9,13 @@ public class CatScoreController : MonoBehaviour
 
     void Start()
     {
-        CatScoreText.text = "Final Score: " + Global.Instance.catScore;
+        CatScoreText.text = "Cat Score: " + Global.Instance.catScore;
     }
 
 
     public void FixedUpdate()
     {
-        CatScoreText.text = "Final Score: " + Global.Instance.catScore;
+        CatScoreText.text = "Cat Score: " + Global.Instance.catScore;
     }
 
 }
