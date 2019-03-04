@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
-  playerSlowSpeed: 3
+  playerSlowSpeed: 6
   catMoveForce: 500
   catMoveTimeMax: 10
   catMoveTimeMin: 1
@@ -379,9 +379,8 @@ MonoBehaviour:
   catPostMoveTimer: 5
   netTimer: 0.5
   iceTimer: 10
-  catRayNumber: 8
-  catTotalNumber: 20
-  catPowerNumber: 2
+  catTotalNumber: 35
+  catPowerNumber: 4
   playerSlideMultiplier: 5
   catMeowMinGap: 10
   catMeowMaxGap: 30
@@ -401,7 +400,9 @@ MonoBehaviour:
   previousCatCaughtTime: 0
   latterCatCaughtTime: 0
   CatCaughtTimeInterval: 0
+  playerStill: 0
   playerInRiver: 0
+  playerNewIceCat: 0
 --- !u!4 &418121477
 Transform:
   m_ObjectHideFlags: 0
