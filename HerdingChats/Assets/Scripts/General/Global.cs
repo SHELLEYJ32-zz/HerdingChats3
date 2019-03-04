@@ -15,8 +15,7 @@ public class Global : MonoBehaviour
     public float catMoveForce = 500.0f;
     public float catMoveTimeMax = 10.0f;
     public float catMoveTimeMin = 1.0f;
-    public float catSlowEvadeSpeed = 6.0f;
-    public float catFastEvadeSpeed = 12.0f;
+    public float catEvadeSpeed = 12.0f;
     public float catDriftSpeed = 2.0f;
     public float catEvadeCooldown = 0.5f;
     public float catPostMoveTimer = 5.0f;

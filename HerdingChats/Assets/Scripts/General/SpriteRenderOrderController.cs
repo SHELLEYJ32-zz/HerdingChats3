@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class SpriteRenderOrderController : MonoBehaviour
 {
-
+    //mark and update each sprite's order in layer
     void FixedUpdate()
     {
         SpriteRenderer[] spriteRenderers = FindObjectsOfType<SpriteRenderer>();

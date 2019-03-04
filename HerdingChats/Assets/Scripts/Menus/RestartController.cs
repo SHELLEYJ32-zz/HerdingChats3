@@ -7,6 +7,7 @@ public class RestartController : MonoBehaviour
 {
     public void Restart()
     {
+        //reset counts and scores
         Global.Instance.catsCaught = 0;
         Global.Instance.catScore = 0;
         Global.Instance.finalScore = 0;

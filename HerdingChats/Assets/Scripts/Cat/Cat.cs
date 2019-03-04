@@ -10,13 +10,14 @@ public class Cat : MonoBehaviour
     private Rigidbody2D catRB;
     private Sprite originalSprite;
     private GameObject TwitchName;
-    private AudioClip meowChoice;
-
 
     //Audio
     public AudioClip meow1;
     public AudioClip meow2;
     public AudioClip meow3;
+    public AudioClip pointGainSound;
+    private AudioClip meowChoice;
+    private float randomMeow;
 
     //move and drift
     private float moveHorizontal;
@@ -54,6 +55,7 @@ public class Cat : MonoBehaviour
     {
         catRB = gameObject.GetComponent<Rigidbody2D>(); //Get the cats Rigidbody2D
         originalSprite = gameObject.GetComponent<SpriteRenderer>().sprite; //Save the sprite the cat spawned with so we can change it back later
+
         catMoveTimer = 0.0f; //set cat move timer
         catMoveDirectionChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax); //set an initial random value for the cats move direction
         catMoveChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax); //set an initial random value for the cats chance to move
@@ -63,20 +65,24 @@ public class Cat : MonoBehaviour
         drift = Vector3.zero; //initialize empty Vectors for drift and evasion
         away = Vector3.zero;
         DriftDirection(); //Start the cat drifting
+
         GameObject[] catArray = GameObject.FindGameObjectsWithTag("Cat"); //get array of all cats in scene
         catCount = catArray.Length; //count them for later
         catSoundTimer = Random.Range(Global.Instance.catMeowMinGap, Global.Instance.catMeowMaxGap); //set initial random value for time to meow
         catCaughtRotationSpeed = 20.0f; //set speed for cought spin
-        catDisappearTimer = 0.4f; //set time for cat to kepp spinning
+
+        randomMeow = Random.Range(0.0f, 3.0f); //pick a random meow effect
+        catDisappearTimer = 0.4f; //set time for cat to kepp spinning before disappear
         TwitchName = Resources.Load("TwitchName") as GameObject; //ready the prefab to display twitch users names
     }
 
     void FixedUpdate()
     {
-        catMoveTimer += Time.deltaTime; //Increment all timers
+        catMoveTimer += Time.deltaTime; //Increment or decrement all timers
         catDriftTimer += Time.deltaTime;
         catSoundTimer -= Time.deltaTime;
 
+        //check stream mode
         if (!Global.Instance.streamerMode)
         {
             if (catMoveTimer >= catMoveChance)
@@ -85,9 +91,9 @@ public class Cat : MonoBehaviour
             }
         }
 
+        //check evade
         if (evadeFlag)
         {
-            //catRB.velocity = Global.Instance.catFastEvadeSpeed * drift;
             localCatEvadeCooldown = localCatEvadeCooldown - Time.deltaTime;
 
         }
@@ -96,6 +102,7 @@ public class Cat : MonoBehaviour
             catRB.velocity = Global.Instance.catDriftSpeed * drift;
         }
 
+        //check postMove
         if (postMoveFlag)
         {
             catPostMoveTimer = catPostMoveTimer - Time.deltaTime;
@@ -107,6 +114,7 @@ public class Cat : MonoBehaviour
             }
         }
 
+        //reset evade flag and cool down
         if (localCatEvadeCooldown <= 0.0f)
         {
             evadeFlag = false;
@@ -114,18 +122,21 @@ public class Cat : MonoBehaviour
             //Debug.Log("Stop Evading");
         }
 
+        //drift
         if (catDriftTimer >= catDriftChance && evadeFlag == false)
         {
             DriftDirection();
             //Debug.Log("Drift direction changed");
         }
 
+        //meow
         if (catSoundTimer <= 0.0f)
         {
             CatSound();
             catSoundTimer = Random.Range(Global.Instance.catMeowMinGap, Global.Instance.catMeowMaxGap);
         }
 
+        //check caught
         if (catCaughtFlag)
         {
             if (gameObject.GetComponent<PolygonCollider2D>().enabled)
@@ -144,6 +155,7 @@ public class Cat : MonoBehaviour
             }
         }
 
+        //check destroy
         if (catDestroyFlag)
         {
             Destroy(gameObject);
@@ -185,7 +197,6 @@ public class Cat : MonoBehaviour
 
     void DriftDirection()
     {
-        //Debug.Log("Cat " + gameObject + " changed drift direction!");
         //Will cause cats to slowly move around
         catDriftDirectionChance = Random.Range(1, 100);
         if (catDriftDirectionChance <= 25)
@@ -241,6 +252,7 @@ public class Cat : MonoBehaviour
             {
                 catMoveDirection = "Right";
             }
+
             Move(catMoveDirection);
             catMoveChance = Random.Range(Global.Instance.catMoveTimeMin, Global.Instance.catMoveTimeMax);
             catMoveTimer = 0.0f;
@@ -248,14 +260,16 @@ public class Cat : MonoBehaviour
         }
     }
 
-    void Evade(Collider2D collider, float evadeSpeed)
+    //evade form player
+    void Evade(Collider2D collider)
     {
         //Debug.Log(gameObject + "Evading");
         drift = gameObject.transform.position - collider.gameObject.transform.position;
         drift = Vector3.ClampMagnitude(drift, 1.0f);
-        catRB.velocity = drift * evadeSpeed;
+        catRB.velocity = drift * Global.Instance.catEvadeSpeed;
     }
 
+    //move away from obstacles
     void MoveAway(Collision2D collision)
     {
         Vector2 contactPoint = collision.GetContact(0).point;
@@ -268,9 +282,16 @@ public class Cat : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !catCaughtFlag)
         {
-            CatSound();
             catCaughtFlag = true;
+
+            //play point gain sound
+            gameObject.GetComponent<AudioSource>().clip = pointGainSound;
+            gameObject.GetComponent<AudioSource>().Play();
+
+            //cound cat caught num
             Global.Instance.catsCaught = Global.Instance.catsCaught + 1;
+
+            //record caught times
             if (System.Math.Abs(Global.Instance.previousCatCaughtTime - 0f) < Mathf.Epsilon)
             {
                 Global.Instance.previousCatCaughtTime = Time.time;
@@ -281,17 +302,20 @@ public class Cat : MonoBehaviour
                 Global.Instance.CatCaughtTimeInterval = Global.Instance.latterCatCaughtTime - Global.Instance.previousCatCaughtTime;
                 Global.Instance.previousCatCaughtTime = Global.Instance.latterCatCaughtTime;
             }
+
+            //compare caught interval and decide if give multiple scores
             if (Global.Instance.catsCaught != 1 && Global.Instance.CatCaughtTimeInterval <= Global.Instance.catComboTimer)
                 Global.Instance.catScore += Global.Instance.catPointWorth * 2;
             else
                 Global.Instance.catScore += Global.Instance.catPointWorth;
 
-            //Debug.Log(Global.Instance.catsCaught);
+            //check if cat is ice chongus
             if (gameObject.GetComponent<SpriteRenderer>().sprite.name == "Ice_Chongus")
             {
                 Global.Instance.playerNewIceCat = true;
             }
 
+            //check if all cats are caught
             if (Global.Instance.catsCaught == catCount)
             {
                 Global.Instance.endGame = true;
@@ -299,7 +323,6 @@ public class Cat : MonoBehaviour
 
         }
     }
-
 
     public void ChangeSprite()
     {
@@ -315,31 +338,34 @@ public class Cat : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        MoveAway(collision);
-        if (collision.gameObject.layer != 10)
+        //MoveAway(collision);
+        if (collision.gameObject.layer != 10)//if not player layer, move away
         {
             MoveAway(collision);
         }
-        if (collision.gameObject.layer == 10)
+        if (collision.gameObject.layer == 10)// if it is player, be caught
         {
             CatCaught(collision);
         }
     }
 
+    //when player is outside and entering cat's safe circle
     void OnTriggerEnter2D(Collider2D collider)
     {
         //Debug.Log("Trigger fired on " + collider.gameObject);
         if (collider.gameObject.tag == "Player")
         {
             evadeFlag = true;
-            Evade(collider, Global.Instance.catFastEvadeSpeed);
+            Evade(collider);
         }
     }
 
+    //if player is in cat's safe circle
     void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
+            //cat drifts, instead of evading when play stays still
             if (Global.Instance.playerStill)
             {
                 if (catDriftTimer >= catDriftChance)
@@ -350,14 +376,13 @@ public class Cat : MonoBehaviour
             else
             {
                 evadeFlag = true;
-                Evade(collider, Global.Instance.catFastEvadeSpeed);
+                Evade(collider);
             }
         }
     }
 
     void CatSound()
     {
-        float randomMeow = Random.Range(0.0f, 3.0f);
         if (randomMeow < 1.0f)
         {
             meowChoice = meow1;
